@@ -1,20 +1,20 @@
-# Color Block Shredder (Mobile) 
+# Color Block Shredder
 
 <p align="center">
-  <img width="400" src="/images/color-block-shredder/ColorBlockShredder.gif" alt="ColorBlockShredder gameplay gif" />
+  <img width="330" src="/images/color-block-shredder/ColorBlockShredder.gif" alt="ColorBlockShredder gameplay gif" />
 </p>
 
 ## Overview
 
-I independently developed a 3D casual puzzle using Unity and C# for Mobile.
+I worked as a programmer on this 3D casual puzzle game.  
 
-The game features 31 levels, a save/load system, an IAP shop, and localization (English, French, German, Italian, Japanese).  
+The game includes 31 levels, a save/load system, an in-app purchase (IAP) shop, and localization in English, French, German, Italian, and Japanese.  
 
-🔹 Implemented game mechanics and built scalable game architecture
-🔹 Developed responsive UI with touch controls
+🔹 Implemented core game mechanics and designed scalable architecture  
+🔹 Created responsive UI with touch controls  
 🔹 Integrated platform API: ads, IAP, saves, analytics, leaderboards  
-🔹 Built audio system with music and SFX
-🔹 Optimized for smooth performance across devices
+🔹 Built audio system with music and SFX  
+🔹 Optimized performance for smooth gameplay across various devices  
 
 ---
 
@@ -35,7 +35,7 @@ The game features 31 levels, a save/load system, an IAP shop, and localization (
 
 ## My GameDev Projects
 
-- [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/puzzle-platformer-2d.md)
+- [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/puzzle-platformer-2d.md)  
 - [Idle Arcade 3D](https://github.com/AlesandroDenisov/IdlePrototype)  
 - [City Ytic](https://)  
 - [Brave Diver](https://)  
