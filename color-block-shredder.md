@@ -35,7 +35,7 @@ The game includes 31 levels, a save/load system, an in-app purchase (IAP) shop, 
 
 ## My GameDev Projects
 
-- [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/puzzle-platformer-2d.md)  
+- [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/2d-puzzle-platformer.md)  
 - [Idle Arcade 3D](https://github.com/AlesandroDenisov/IdlePrototype)  
 - [City Ytic](https://)  
 - [Brave Diver](https://)  

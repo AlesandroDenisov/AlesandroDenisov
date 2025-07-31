@@ -1,9 +1,7 @@
 # Puzzle Platformer 2D for WebGL (PC, Mobile, Tablet) 
 
 <p align="center">
-  <a href="https://playhop.com/app/406455">
-    <img width="760" src="images/2d-puzzle-platformer/cover.png" alt="cover" />
-  </a>
+  <img width="760" src="/images/2d-puzzle-platformer/gameplay-level13.gif" alt="gameplay gif" />
 </p>
 
 <table>
@@ -34,12 +32,6 @@ Here’s a link to try it: [Floating Islands: Puzzle Platformer 2D](https://play
     </td>
   </tr>
 </table>
-
-<br>
-
-<p align="center">
-  <img width="760" src="/images/2d-puzzle-platformer/gameplay-level13.gif" alt="gameplay gif" />
-</p>
 
 ---
 

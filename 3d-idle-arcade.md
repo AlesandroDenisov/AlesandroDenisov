@@ -13,7 +13,7 @@ Here’s a link to try it: [Play Idle Arcade 3D](https://bit.ly/3Y7bnuh)
 
 ## My GameDev Projects  
 - [Color Block Shredder](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/color-block-shredder.md)
-- [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/puzzle-platformer-2d.md)
+- [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/2d-puzzle-platformer.md)
 - [City Ytic](https://)  
 - [Brave Diver](https://)  
 
