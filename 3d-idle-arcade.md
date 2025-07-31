@@ -1,32 +1,21 @@
 # Idle Arcade 3D
 
-<a href="https://bit.ly/3Y7bnuh">
-<img align="right" height="auto" width="200" src="images/puzzle-platformer-2d/cover.png"/>
-</a>
-
-I independently developed a 2D puzzle platformer using Unity and C#, optimized for WebGL and playable on desktop, mobile, and tablets. The game features 35 handcrafted levels, a tutorial, a save/load system, scoring, and localization (English, Russian, Turkish).
-
-🔹 WebGL build under 20MB
-🔹 Built a responsive UI with adaptive input (keyboard for desktop, touch controls for mobile and tablet)
-🔹 Integrated platform API: ads, cloud saves, analytics, leaderboards
-🔹 Implemented audio system with music and SFX
-🔹 Smooth performance across devices
-
-Live on Yandex Games with a stable WebGL build.
-Here’s a link to try it: [Idle Arcade 3D](https://bit.ly/3Y7bnuh)
-
-<p>
-  <img align="right" height="auto" width="200" src="/images/puzzle-platformer-2d/iphone01.png">
-</p>
-<p>
-  <img align="right" height="auto" width="200" src="/images/puzzle-platformer-2d/iphone02.png">
-</p>
+<table>
+  <tr>
+    <td width="50%" valign="top">
 
 
-## My GameDev Projects 
-• [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/puzzle-platformer-2d.md)
-• [City Ytic](https://) 
-• [Brave Diver](https://) 
+This project showcases a Unity game designed to highlight my skills in C# programming, game architecture, and the implementation of advanced patterns such as State Machine, Abstract Factory, and Service Locator. The game includes systems for player movement, progression, resource management, and a robust game loop, all designed with scalability and maintainability in mind.
+
+Prototype github: [Idle Arcade 3D: Demo prototype](https://github.com/AlesandroDenisov/IdlePrototype)  
+Here’s a link to try it: [Play Idle Arcade 3D](https://bit.ly/3Y7bnuh)
+
+
+## My GameDev Projects  
+- [Color Block Shredder](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/color-block-shredder.md)
+- [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/puzzle-platformer-2d.md)
+- [City Ytic](https://)  
+- [Brave Diver](https://)  
 
 <br>
 

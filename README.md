@@ -18,27 +18,29 @@ Here’s what I can do for you:
 ## Tech Stack
 
 **Hard Skills**  
-- C#, Unity (Addressables, UniTask, DOTween, Scriptable Objects, uGUI, UI Toolkit)  
-- Clean Code, SOLID, Design Patterns, Zenject, ECS, SOA, MVx  
+- C#, Unity (Addressables, UniTask, DOTween, Scriptable Objects, uGUI, UI Toolkit, Unity Profiler, Odin)  
+- Clean Code, SOLID, GRASP, Design Patterns, Zenject, ECS, MVx  
 - Performance profiling, optimization for mobile & WebGL  
 - JSON, XML, HTML, SOAP  
 - Python, SQL  
 
 **Tools**  
-- Visual Studio, Git, AI-Powered Development Assistants  
+- Visual Studio, JetBrains Rider, Git, ELK Stack, AI-Powered Development Assistants  
 - Figma, Photoshop/GIMP, Corel Draw, Blender, Movavi Editor  
-- Jira, Confluence, Trello, Notion  
+- Jira, Confluence, Trello, Notion
+- Jenkins, MS Azure
 
 **Soft Skills**  
-- English (B2), Russian (Native)  
+- English - Intermediate (B2), Russian - Native
 - Team collaboration, cross-functional communication  
 - Fast prototyping, creative problem-solving, adaptability  
-- Public speaking, negotiation, improvisation  
+- Public speaking, negotiation 
 
 ---
 
 ## My GameDev Projects
 
+- [Color Block Shredder](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/color-block-shredder.md)
 - [Puzzle Platformer 2D for WebGL](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/2d-puzzle-platformer.md)  
 - [Idle Arcade 3D](https://github.com/AlesandroDenisov/IdlePrototype)  
 - [City Ytic](https://)  

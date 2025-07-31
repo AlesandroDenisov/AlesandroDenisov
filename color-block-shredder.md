@@ -1,39 +1,34 @@
 # Color Block Shredder (Mobile) 
 
 <p align="center">
-  <img width="760" src="/images/color-block-shredder/ColorBlockShredder.gif" alt="ColorBlockShredder gameplay gif" />
+  <img width="400" src="/images/color-block-shredder/ColorBlockShredder.gif" alt="ColorBlockShredder gameplay gif" />
 </p>
 
-<table>
-  <tr>
-    <td width="50%" valign="top">
+## Overview
 
 I independently developed a 3D casual puzzle using Unity and C# for Mobile.
 
-The game features 31 levels, a save/load system, IAP shop, and localization (English, French, German, Italian, Japanese).  
+The game features 31 levels, a save/load system, an IAP shop, and localization (English, French, German, Italian, Japanese).  
 
-🔹 Implemented game mechanics, built scalable game architecture
-🔹 Built a responsive UI with mobile touch controls input
+🔹 Implemented game mechanics and built scalable game architecture
+🔹 Developed responsive UI with touch controls
 🔹 Integrated platform API: ads, IAP, saves, analytics, leaderboards  
-🔹 Implemented audio system with music and SFX
-🔹 Smooth performance across devices
+🔹 Built audio system with music and SFX
+🔹 Optimized for smooth performance across devices
 
-</td>
-    <td width="50%" valign="top">
-      <img width="100%" src="/images/color-block-shredder/iphone01.png" alt="Level screen (Mobile version)" /><br><br>
-      <img width="100%" src="/images/color-block-shredder/iphone02.png" alt="Gameplay screen (Mobile version)" /><br><br>
-      <img width="100%" src="/images/color-block-shredder/iphone03.png" alt="Setting screen (Mobile version)" /><br><br>
-      <img width="100%" src="/images/color-block-shredder/iphone04.png" alt="IAP shop screen (Mobile version)" /><br><br>
-      <img width="100%" src="/images/color-block-shredder/iphone05.png" alt="Lose screen (Mobile version)" /><br><br>
-      <img width="100%" src="/images/color-block-shredder/iphone06.png" alt="Win screen (Mobile version)" />
-    </td>
-  </tr>
-</table>
+---
 
-<br>
+## Screenshots
 
 <p align="center">
-  <img width="760" src="/images/2d-puzzle-platformer/gameplay-level13.gif" alt="gameplay gif" />
+  <img src="/images/color-block-shredder/iphone01.png" width="220" alt="Level screen" />
+  <img src="/images/color-block-shredder/iphone02.png" width="220" alt="Gameplay screen" />
+  <img src="/images/color-block-shredder/iphone03.png" width="220" alt="Settings screen" />
+</p>
+<p align="center">
+  <img src="/images/color-block-shredder/iphone04.png" width="220" alt="IAP shop screen" />
+  <img src="/images/color-block-shredder/iphone05.png" width="220" alt="Lose screen" />
+  <img src="/images/color-block-shredder/iphone06.png" width="220" alt="Win screen" />
 </p>
 
 ---

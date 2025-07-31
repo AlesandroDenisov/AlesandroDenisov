@@ -45,6 +45,7 @@ Here’s a link to try it: [Floating Islands: Puzzle Platformer 2D](https://play
 
 ## My GameDev Projects
 
+- [Color Block Shredder](https://github.com/AlesandroDenisov/AlesandroDenisov/blob/master/color-block-shredder.md)
 - [Idle Arcade 3D](https://github.com/AlesandroDenisov/IdlePrototype)  
 - [City Ytic](https://)  
 - [Brave Diver](https://)  
