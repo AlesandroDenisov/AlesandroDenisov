@@ -1,0 +1,1251 @@
+<script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+        return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                    row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                    headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4NVD2011E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-Q4NVD2011E'); 
+    </script>-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description"
+        content="Портфолио Алекса Денисова, разработчика на Unity и C#.">
+    <meta name="author" content="Алекс Денисов" />
+    <title>Портфолио Алекса Денисова</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+        rel="stylesheet" type="text/css" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        .project-tags {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            left: auto;
+            transform: none;
+            z-index: 2;
+            display: flex;
+            gap: 8px;
+            pointer-events: none;
+            transition: opacity 0.6s;
+        }
+        .project-tag-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(30,30,30,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .project-tag-icon img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+        .project-item {
+            position: relative;
+        }
+        .project-tags.fade-out {
+            opacity: 0;
+        }
+        .project-tags.fade-in {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+    <!-- <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a> -->
+<a class="menu-toggle rounded"
+   href="#"
+   style="
+      background: rgba(52, 58, 64, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: fixed;
+      right: 15px;
+      top: 15px;
+      z-index: 999;
+      transition: background 0.2s;
+   "
+   onmouseenter="this.style.background='rgba(52, 58, 64, 0.9)';"
+   onmouseleave="this.style.background='rgba(52, 58, 64, 0.5)';"
+>
+    <i class="fas fa-bars"
+       style="
+          color: rgba(255, 255, 255, 1);
+          font-size: 2rem;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+       "
+    ></i>
+</a>
+    <!--<header class="masthead d-flex align-items-center">-->
+    <header class="content-section bg-tertiary text-white text-center">
+        <div class="container px-4 px-lg-5 text-center">
+            <h1 class="mb-1">Александр Денисов</h1>
+            <h3 class="mb-5"><em>Профессиональный разработчик игр на Unity и C#</em></h3>
+            <a class="btn btn-primary btn-xl" href="assets/Денисов Александр, Unity-разработчик.pdf" target="_blank">Скачать CV</a>
+            <!--<a class="btn btn-dark btn-x2" href="#portfolio">Мои проекты</a>--> 
+            <!--AlexanderDenisov_Unity_Developer_RU.pdf">Download CV</a>!-->
+        </div>
+    </header>
+    <!--
+    <section class="content-section bg-tertiary text-white text-center" id="services">
+        <div class="container px-4 px-lg-5">
+            <div class="content-section-heading">
+                <h2 class="mb-5">What I Do</h2>
+            </div>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <span class="service-icon rounded-circle mx-auto mb-3">
+                        <img class="img-fluid" src="assets/img/code.png" alt="C# Coding in unity" />
+                    </span>
+                    <h4><strong>Coding</strong></h4>
+                    <p class="text-faded mb-0">Unity C# and Python</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <span class="service-icon rounded-circle mx-auto mb-3">
+                        <img class="img-fluid" src="assets/img/Shader.png"
+                            alt="Shader creation for unity using hlsl and shader graph" />
+                    </span>
+                    <h4><strong>Shader Magic</strong></h4>
+                    <p class="text-faded mb-0">HLSL, Shader Graph & VFX Graph</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                    <span class="service-icon rounded-circle mx-auto mb-3">
+                        <img class="img-fluid" src="assets/img/3d-Modeling.png" alt="3d modeling in blender" />
+                    </span>
+                    <h4><strong>3D Modeling & Rendering</strong></h4>
+                    <p class="text-faded mb-0">Blender, Maya and Cinema4d</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <span class="service-icon rounded-circle mx-auto mb-3">
+                        <img class="img-fluid" src="assets/img/Texturing.png"
+                            alt="Texture painting and uv mapping with substance painter and maya" />
+                    </span>
+                    <h4><strong>Texturing & UV Mapping</strong></h4>
+                    <p class="text-faded mb-0">Substance Painter</p>
+                </div>
+                <span class="black-circle"></span>
+                <span class="black-circle"></span>
+                <span class="black-circle"></span>
+                <span class="black-circle"></span>
+            </div>
+        </div>
+    </section>
+    -->
+    <section class="portfolio-section bg-dark" id="portfolio">
+        <div class="container px-4 px-lg-5">
+            <div id="project-filters" class="text-center my-4">
+                <button class="btn btn-outline-light mx-1" onclick="filterProjects('all')">All</button>
+                <button class="btn btn-outline-light mx-1" onclick="filterProjects('gameDev')">Game Development</button>
+                <!--<button class="btn btn-outline-light mx-1" onclick="filterProjects('techArt')">Technical Art</button>
+                <button class="btn btn-outline-light mx-1" onclick="filterProjects('recent')">Recent Projects</button>-->
+            </div>
+            <div class="row gx-0">                
+                <!-- NDA 4X Strategy Item -->
+                <div id="NdaStrategy4XLabel" class="col-lg-3 project-item gameDev recent">
+                    <div class="project-tags fade-in">
+                        <span class="project-tag-icon" title="Coding">
+                            <img src="assets/img/code.png" alt="Coding" />
+                        </span>
+                    </div>
+                    <a class="portfolio-item" href="#" data-bs-toggle="modal" data-bs-target="#modalNda4xStrategy">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="h2">NDA 4X STRATEGY</div>
+                                <p class="mb-0">Многопользовательская мобильная 4X стратегия со строительством базы, управлением ресурсами, прокачкой героев и тактическими боями.</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/images/nda-4x-strategy/icon-rounded-512.webp"
+                             alt="NDA 4X STRATEGY" />
+                    </a>
+                </div>                
+                
+                <!-- Color Block Shredder Item -->
+                <div id="ColorBlockShredder" class="col-lg-3 project-item gameDev techArt recent">
+                    <div class="project-tags fade-in">
+                        <span class="project-tag-icon" title="Coding">
+                            <img src="assets/img/code.png" alt="Coding" />
+                        </span>
+                    </div>
+                    <a class="portfolio-item" href="#" data-bs-toggle="modal" data-bs-target="#modalColorBlockShredder">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="h2">Color Block Shredder</div>
+                                <p class="mb-0">Клон игры Color Block Jam.</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/images/color-block-shredder/icon-rounded.png"
+                             alt="Клон игры Color Block Jam." />
+                    </a>
+                </div>
+
+                <!-- Puzzle Platformer 2D Item -->
+                <div id="PuzzlePlatformer2D" class="col-lg-3 project-item gameDev recent">
+                    <div class="project-tags fade-in">
+                        <span class="project-tag-icon" title="Coding">
+                            <img src="assets/img/code.png" alt="Coding" />
+                        </span>
+                        <span class="project-tag-icon" title="Texturing & UV Mapping">
+                            <img src="assets/img/Texturing.png" alt="Texturing & UV Mapping" />
+                        </span>
+                    </div>
+                    <a class="portfolio-item" href="#" data-bs-toggle="modal" data-bs-target="#modalPuzzlePlatformer2D">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="h2">FLOATING ISLANDS: PUZZLE PLATFORMER</div>
+                                <p class="mb-0">Головоломка платформер в 2D,полностью готовая игра с 35 уровнями под WebGL для Яндекс игр.</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/images/floating-islands-puzzle-platformer-2d/icon-rounded.png"
+                             alt="2D Головоломка платформер для WebGL" />
+                    </a>
+                </div>
+
+                <!-- Wasteland Idle Item -->
+                <div id="WastelandIdleArcade" class="col-lg-3 project-item gameDev">
+                    <div class="project-tags fade-in">
+                        <span class="project-tag-icon" title="Coding">
+                            <img src="assets/img/code.png" alt="Coding" />
+                        </span>
+                    </div>
+                    <a class="portfolio-item" href="#" data-bs-toggle="modal" data-bs-target="#modalWastelandIdleArcade">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="h2">Wasteland Idle Arcade</div>
+                                <p class="mb-0">Аркада в жанре Idle на машине и в духе Mad Max.</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/images/wasteland-idle-arcade/icon-rounded-512.webp"
+                             alt="Wasteland Idle Arcade" />
+                    </a>
+                </div>
+                
+                <!-- City Ytic Portfolio Item -->
+                <div id="CityYtic" class="col-lg-3 project-item gameDev recent">
+                    <div class="project-tags fade-in">
+                        <span class="project-tag-icon" title="Coding">
+                            <img src="assets/img/code.png" alt="Coding" />
+                        </span>
+                    </div>
+                    <a class="portfolio-item" href="#" data-bs-toggle="modal" data-bs-target="#modalCityYtic">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="h2">ГороД ДороГ</div>
+                                <p class="mb-0">Демо-игра, вдохновленная творчеством Маурица Эшера и Monument Valley.</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/images/city-ytic/icon-rounded-1024.webp"
+                             alt="Демо-игра, вдохновленная творчеством Маурица Эшера и Monument Valley" />
+                    </a>
+                </div>
+
+                <!-- How to steal the X-mas / Hackathon 4.0 Portfolio Item -->
+                <div id="Hackathon4" class="col-lg-3 project-item gameDev recent">
+                    <div class="project-tags fade-in">
+                        <span class="project-tag-icon" title="Coding">
+                            <img src="assets/img/code.png" alt="Coding" />
+                        </span>
+                    </div>
+                    <a class="portfolio-item" href="#" data-bs-toggle="modal" data-bs-target="#modalHackathon4">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="h2">Как украсть Рождество</div>
+                                <p class="mb-0">1ое место на гейм-джеме Hackaton 4.0.</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/images/how-to-steal-christmas/icon-rounded-512.webp"
+                             alt="How to steal the X-mas" />
+                    </a>
+                </div>
+                
+                <!-- Brave Diver Item -->
+                <div id="BraveDiver" class="col-lg-3 project-item gameDev">
+                    <div class="project-tags fade-in">
+                        <span class="project-tag-icon" title="Coding">
+                            <img src="assets/img/code.png" alt="Coding" />
+                        </span>
+                    </div>
+                    <a class="portfolio-item" href="#" data-bs-toggle="modal" data-bs-target="#modalBraveDiver">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="h2">SCUBA DIVING: BRAVE DIVER</div>
+                                <p class="mb-0">Клон игры Dave the Diver.</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/images/brave-diver/icon-rounded.webp"
+                             alt="Клон игры Dave the Diver." />
+                    </a>
+                </div>
+                
+                <p style="margin-bottom:.5cm;"></p>
+                <a id="ShowMoreButton" class="btn btn-primary btn-xl" href="javascript:void(0);"
+                    onclick="showAllInCategory()">Load More</a>
+            </div>
+        </div>
+                
+        <!-- Modals -->
+        <!-- NDA 4X Strategy Modal Item-->
+        <div class="modal fade" id="modalNda4xStrategy" tabindex="-1" aria-labelledby="modalNda4xStrategyLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalNda4xStrategyLabel">NDA 4X STRATEGY</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- Description -->
+                        <p class="mt-3">Работаю в качестве Unity-разработчика клиентской части над многопользовательской мобильной 4X стратегией со строительством базы, управлением ресурсами, прокачкой героев и тактическими боями. </p>
+
+                        <p/><p>Из-за NDA не могу раскрыть детали. </p>
+
+                        <p/><p> Применял следующие подходы и технологии:<br>
+                        🔹 Clean Architecture в качестве архитектурного подхода<br>
+                        🔹 VContainer в качестве Dependency Injection фреймворка<br>
+                        🔹 MessagePipe в качестве шины данных для decoupled-связи<br>
+                        🔹 UniTask для использования async/await<br>
+                        🔹 R3 для реактивного программирования<br>
+                        🔹 PlayFab для backend сервисов, конфигов и аналитики<br>
+                        🔹 DOTS(ECS)<br>
+                        🔹 UI Toolkit для UI<br>
+                        🔹 FMOD в качестве аудио системы<br>
+                        🔹 NSubstitute и NUnit для создания unit тестов</p>
+
+                        <p/><p> Примеры задач, которые выполнял:<br>
+                        🔹 Разработал диалоговую систему персонажей<br>
+                        🔹 Работал над системой снаряжения игрока - производство, улучшение, разборка игровых предметов и материалов для их создания<br>
+                        🔹 Создал инструмент массового импорта контента, который позволяет экономить десятки часов работы техартистов (в два клика в проект добавляются 2d текстуры, иконки, 3d модели с авто-применением пресетов, с созданием атласов, с авто-созданием префабов игровых сущностей, с авто-добавлением их на сцены и в Addressables).<br>
+                        🔹 Создал инструмент выгрузки данных из google sheets, что ускорило проверку баланса в 2 раза и экономит часы на создании конфигурационных файлов (из гугл таблиц, создаваемых и расширяемых гейм дизайнерами, выгружаются данные баланса и автоматически создаются Scriptable Objects, используемые в коде).<br>
+                        🔹 Создал инструмент для оптимизации применения теней в игре<br>
+                        🔹 Создавал GUI интерфейсы с помощью Unity UI Toolkit по созданной арт-отделом верстке в figma<br>
+                        🔹 Создавал unit-тесты с покрытием кода >70%, чтобы снизить до 0 появление критических багов в продакшене</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- City Ytic Modal Item-->
+        <div class="modal fade" id="modalCityYtic" tabindex="-1" aria-labelledby="modalCityYticLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCityYticLabel">ГОРОД ДОРОГ</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <!-- City Ytic gameplay video -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/89iOmBi_zWQ" title="City Ytic gameplay" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Демо-игра, вдохновленная творчеством Маурица Эшера и игрой Monument Valley</div>
+                        </div>
+                        <p class="mt-3">В этом проекте я повторил часть механик оригинальной игры Monument Valley:<br>
+                        🔹 Иллюзия перемещения героя, которое невозможно в трехмерном евклидовом пространстве.<br>
+                        🔹 Заданная система правил перемещения для каждого уровня.<br>
+                        🔹 Перемещение платформ с зажатым курсором мыши.<br>
+                        🔹 Повороты и перемещения элементов уровня при выполнении заданных условий или нажатия героем на кнопки.<br>
+                        🔹 Расчёт доступных и недоступных маршрутов героя при изменении ландшафта уровня.</p>
+
+                        <p/><p> В проекте применял следующие технологии:<br>
+                        🔹 Zenject в качестве DI Container<br>
+                        🔹 UniTask для использования async/await<br>
+                        🔹 UI Toolkit для UI<br>
+                        🔹 DOTween для анимаций<br>
+                        🔹 NSubstitute и NUnit для создания unit тестов</p>
+
+                        <a href="https://alex-denisov.itch.io/city-ytic" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Play Demo on itch.io</a>
+
+                        <p/><div class="modal-horizontal-stack text-center">
+                            <img src="assets/images/city-ytic/Screenshot_level_001.png" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:300px;width:100%;height:auto;">
+                            <img src="assets/images/city-ytic/Screenshot_level_003.png" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:300px;width:100%;height:auto;">
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Color Block Shredder Modal Item-->
+        <div class="modal fade" id="modalColorBlockShredder" tabindex="-1" aria-labelledby="modalColorBlockShredderLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalColorBlockShredderLabel">COLOR BLOCK SHREDDER</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <!-- Color Block Shredder gameplay video -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/xbXEU5aLX7M" 
+                                        title="ColorBlockShredder gameplay" 
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <!--<div class="modal-caption mb-4">Видео с геймплеем</div>-->
+                        </div>
+                        <!--
+                        <div class="text-center">
+                            <div class="modal-caption mb-4">О  Color Block Shredder</div>
+                        </div>-->
+                        <!-- Description -->
+                        <p class="mt-3">Работал в качестве Unity-разработчика над данной игрой в небольшой команде.</p>
+
+                        <p/>
+                        <p>Игра в жанре 3d головоломки, содержит 31 уровень, систему сохранений, магазин покупок (IAP), локализацию на Russian, English, French, German, Italian, and Japanese.</p>
+
+                        <p/><p>🔹 Реализована кор-механика и продумана расширяемая архитектура<br>
+                        🔹 Создан отзывчивый UI на uGUI с тач управлением<br>
+                        🔹 Интегрированы API: реклама, IAP, сохранения, аналитика, таблица лидеров<br>
+                        🔹 Добавлена звуковая система с проигрыванием музыки и SFX<br>
+                        🔹 Оптимизирована производительность для плавного геймплея на разных устройствах</p>
+                        <!-- PLAY-->
+                        <!--<a href="" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Play on itch.io</a>-->
+
+                        <p/><div class="modal-horizontal-stack text-center">
+                            <img src="assets/images/color-block-shredder/Apple iPhone 12 (1).png" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:300px;width:100%;height:auto;">
+                            <img src="assets/images/color-block-shredder/Apple iPhone 12 (4).png" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:300px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-horizontal-stack text-center">
+                            <img src="assets/images/color-block-shredder/Apple iPhone 12 (3).png" class="img-fluid mb-4 mx-auto" alt="shop" style="max-width:300px;width:100%;height:auto;">
+                            <img src="assets/images/color-block-shredder/Apple iPhone 12.png" class="img-fluid mb-4 mx-auto" alt="level gamelay victory" style="max-width:300px;width:100%;height:auto;">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Puzzle Platformer 2D Modal Item-->
+        <div class="modal fade" id="modalPuzzlePlatformer2D" tabindex="-1" aria-labelledby="modalPuzzlePlatformer2DLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPuzzlePlatformer2DLabel">FLOATING ISLANDS: PUZZLE PLATFORMER</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <!-- Color Block Shredder gameplay video -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/lZ9SG0F85A4"
+                                        title="Floating Islands gameplay"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <!--<div class="modal-caption mb-4">Видео с геймплеем</div>-->
+                        </div>
+                        <!--
+                        <div class="text-center">
+                            <div class="modal-caption mb-4">О  Color Block Shredder</div>
+                        </div>-->
+                        <!-- Description -->
+                        <p class="mt-3">В одиночку создал 2D головоломку-платформер на Unity и C#, оптимизировал под WebGL для игры на PC, смартфонах и планшетах. </p>
+
+                        <p/><p>Игра включает 35 уровней, обучение, систему сохранений для Яндекс Игр, таблицу лидеров и поддержку нескольких языков (русский, английский, турецкий).</p>
+
+                        <p/><p>🔹 Уменьшил размер билда WebGL до 15 Мб при сохранении функционала для ускорения загрузки и лучшей производительности<br>
+                        🔹 Создал отзывчивый UI с адаптивной системой ввода (клавиатура для Desktop, сенсорное управление на экране для мобильных и планшетов)<br>
+                        🔹 Интегрировал API Яндекс Игр: реклама, облачные сохранения, аналитика, таблица лидеров<br>
+                        🔹 Создал аудио систему с фоновой музыкой и звуковыми эффектами, полностью подобрал и настроил звук в игре<br>
+                        🔹 Внедрил полную локализацию для русского, английского, турецкого используя Unity Localization<br>
+                        🔹 Выполнил оптимизацию для плавной работы и стабильных FPS на широком спектре устройств</p>
+                        <!-- PLAY-->
+                        <!--<a href="" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Play on itch.io</a>-->
+                        <!-- PLAY-->
+                        <a href="https://yandex.ru/games/app/481456?draft=true&lang=ru" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Play on games.yandex.ru</a>
+
+                        <p/><div class="modal-vertical-stack text-center">
+                            <img src="assets/images/floating-islands-puzzle-platformer-2d/Apple iPhone 12 (1) - RoundedCut.png" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/floating-islands-puzzle-platformer-2d/Apple iPhone 12 (2) - RoundedCut.png" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/floating-islands-puzzle-platformer-2d/Apple iPhone 12 (3) - RoundedCut.png" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/floating-islands-puzzle-platformer-2d/Apple iPhone 12 (4) - RoundedCut.png" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wasteland Idle Arcade Modal Item-->
+        <div class="modal fade" id="modalWastelandIdleArcade" tabindex="-1" aria-labelledby="modalWastelandIdleArcadeLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalWastelandIdleArcadeLabel">WASTELAND IDLE ARCADE</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/s0jFaypfQFY"
+                                        title="Wasteland Idle Arcade gameplay"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <!--<div class="modal-caption mb-4">Видео с геймплеем</div>-->
+                        </div>
+                        <!--
+                        <div class="text-center">
+                            <div class="modal-caption mb-4">О  Color Block Shredder</div>
+                        </div>-->
+                        <!-- Description -->
+                        <p class="mt-3">Участвовал в роли главного Unity и C# разработчика в проекте по созданию мобильной игры в жанре Idle Arcade.</p>
+
+                        <p/><p>Игра включает системы перемещения игрока, прогрессии, управления ресурсами, система врагов, а также игровой цикл, разработанные с учетом масштабируемости.</p>
+
+                        <p/><p><strong>Разработал архитектуру проекта, StateMachine для управления жизненным циклом игры:</strong><br>
+                        GameRunner -> BootstrapState -> LoadProgressState -> LoadLevelState -> GameLoopState</p>
+
+                        <p/><p><strong>Реализованные системы:</strong><br>
+                        🔹 Система добычи ресурсов (Loot System) с событийной моделью: LootSpawner, BuildingProduce<br>
+                        🔹 Система прогресса игрока с централизованным хранением данных (PersistentProgressService)<br>
+                        🔹 Система врагов с различным поведением (патрулирование, обнаружение и преследование игрока, атака, потеря игрока и прекращение преследования, выпадение лута)<br>
+                        🔹 Аудио система с фоновой музыкой и звуковыми эффектами</p>
+
+                        <p/><p><strong>Применённые паттерны:</strong><br>
+                        🔹 State Machine — управление состояниями игры (GameStateMachine)<br>
+                        🔹 Abstract Factory — создание игровых объектов (GameFactory, UIFactory)<br>
+                        🔹 Service Locator — доступ к сервисам (AllServices)</p>
+
+                        <p/><p><strong>Особенности:</strong><br>
+                        🔹 Модульная архитектура для лёгкого масштабирования<br>
+                        🔹 Чистый и поддерживаемый код с современными паттернами программирования</p>
+
+                        <!-- PLAY-->
+                        <a href="https://alex-denisov.itch.io/wasteland-idle-arcade" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Play Demo on itch.io</a>
+
+                        <p/><div class="modal-vertical-stack text-center">
+                            <img src="assets/images/wasteland-idle-arcade/screenshot-01.jpg" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/wasteland-idle-arcade/screenshot-02.jpg" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/wasteland-idle-arcade/screenshot-03.jpg" class="img-fluid mb-4 mx-auto" alt="progress" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/wasteland-idle-arcade/screenshot-04.jpg" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        
+                        <!--<div class="modal-vertical-stack text-center">
+                            <img src="assets/images/floating-islands-puzzle-platformer-2d/Apple iPhone 12 (1) - RoundedCut.png" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:350px;width:100%;height:auto;">
+                            <img src="assets/images/floating-islands-puzzle-platformer-2d/Apple iPhone 12 (2) - RoundedCut.png" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:350px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/floating-islands-puzzle-platformer-2d/Apple iPhone 12 (3) - RoundedCut.png" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:350px;width:100%;height:auto;">
+                            <img src="assets/images/floating-islands-puzzle-platformer-2d/Apple iPhone 12 (4) - RoundedCut.png" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:350px;width:100%;height:auto;">
+                        </div>-->
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Christmas Hackathon 4.0 Modal Item-->
+        <div class="modal fade" id="modalHackathon4" tabindex="-1" aria-labelledby="modalHackathon4Label"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalHackathon4Label">How to stole the X-mas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <!-- Christmas Hackathon gameplay video -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/5OmdmGzzXKc"
+                                        title="Christmas Hackathon"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <!--<div class="modal-caption mb-4">Видео с геймплеем</div>-->
+                        </div>
+                        <!--
+                        <div class="text-center">
+                            <div class="modal-caption mb-4">Christmas Hackathon</div>
+                        </div>-->
+                        <!-- Description -->
+                        <p class="mt-3">Собранная мной команда из 4 человек, где я был капитаном, создала эту игру за 72 часа на гейм-джеме Hackathon 4.0. </p>
+
+                        <p/><p>Темами джема были: рождество/новый год и система инвентаря.<br>
+                        Игра включает 2 уровня, систему инвентаря, патрулирующих врагов с областью видимости, аудио систему.</p>
+
+                        <p/><p>🔹 Собрал команду; проводил встречи по выбору концепции продукта, прогрессу разработки; распределял обязанности.<br>
+                        🔹 Занимался добавлением в игру системы инвентаря, настройкой предметов.<br>
+                        🔹 Добавил аудио для bg музыки и эффектов.<br>
+                        🔹 Создал модель главного персонажа в AI-генеративном инструменте.<br>
+                        🔹 Настраивал баланс уровней, полишинг финальной версии игры.<br>
+                        🔹 Провел презентацию игры в финале.</p>
+                        
+                        <!-- PLAY-->
+                        <a href="https://octohor.itch.io/how-to-stole-the-x-mas" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Play on itch.io</a>
+
+                        <p/><div class="modal-horizontal-stack text-center">
+                            <img src="assets/images/how-to-steal-christmas/screenshot-01.webp" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:300px;width:100%;height:auto;">
+                            <img src="assets/images/how-to-steal-christmas/screenshot-02.webp" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:300px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-horizontal-stack text-center">
+                            <img src="assets/images/how-to-steal-christmas/screenshot-03.webp" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:300px;width:100%;height:auto;">
+                            <img src="assets/images/how-to-steal-christmas/screenshot-04.webp" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:300px;width:100%;height:auto;">
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Brave Diver Modal Item-->
+        <div class="modal fade" id="modalBraveDiver" tabindex="-1" aria-labelledby="modalBraveDiverLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalBraveDiverLabel">SCUBA DIVING: BRAVE THE DIVER</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <!-- Color Block Shredder gameplay video -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/5aJFbWkgNyo"
+                                        title="Brave Diver gameplay"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <!--<div class="modal-caption mb-4">Видео с геймплеем</div>-->
+                        </div>
+                        <!--
+                        <div class="text-center">
+                            <div class="modal-caption mb-4">О  Color Block Shredder</div>
+                        </div>-->
+                        <!-- Description -->
+                        <p class="mt-3">Этот проект был создан в команде в рамках геймдев мастерской в 2023 году. Я принимал участие как программист, а также занимался дизайном уровней и балансом. Метрики при тестовой закупке траффика оказались ниже ожиданий и было решено не продолжать развивать проект.</p>
+
+                        <p/><p>Мои выполненные задачи:<br>
+                        🔹 Спроектировал дизайн уровня, используя оригинальную игру в качестве референса.<br>
+                        🔹 Сделал уровень в редакторе Unity с использованием готовых ассетов.<br>
+                        🔹 Реализовал систему атаки на ECS<br>
+                        🔹 Создал систему перемещения рыб<br>
+                        🔹 Просчитал баланс получаемых ресурсов в Google Sheet</p>
+                        <!-- PLAY-->
+                        <!--<a href="" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Play on itch.io</a>-->
+                        <a href="assets/builds/BraveDiver.apk" target="_blank" class="btn btn-primary">Download APK</a>
+
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/brave-diver/map.webp" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/brave-diver/screenshot-01.webp" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/brave-diver/screenshot-02.webp" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/images/brave-diver/screenshot-03.webp" class="img-fluid mb-4 mx-auto" alt="gameplay" style="max-width:700px;width:100%;height:auto;">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="modalEnvArt" tabindex="-1" aria-labelledby="modalEnvArtLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEnvArtLabel">Environment Art</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/bg-masthead.jpg" class="img-fluid mb-4 mx-auto" alt="Environment Art Image 1">
+                            <div class="modal-caption mb-4">Unity HDRP realistic environment.</div>
+                        </div>
+                        <p class="mt-3">A Unity HDRP environment showcasing realistic shaders, dynamic lighting, and atmospheric effects. This project emphasizes high-fidelity visuals and optimized rendering for immersive experiences.</p>
+                        <a href="https://www.artstation.com/artwork/6N5Xlx" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on ArtStation</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalShader01" tabindex="-1" aria-labelledby="modalShader01Label"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalShader01Label">Grass Shader</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/portfolio-4.jpg" class="img-fluid mb-4 mx-auto" alt="Grass Shader Image 1">
+                            <div class="modal-caption mb-4">Unity HDRP realistic grass shader.</div>
+                        </div>
+                        <p class="mt-3">This project explores realistic grass rendering using Unity HDRP. The shader includes dynamic wind effects and procedural placement for a natural look, optimized for real-time performance.</p>
+                        <a href="https://www.artstation.com/artwork/Rya2RO" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on ArtStation</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalMachinarium" tabindex="-1" aria-labelledby="modalMachinariumLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalMachinariumLabel">Machinarium FanArt</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/portfolio-3.jpg" class="img-fluid mb-4 mx-auto" alt="Machinarium FanArt Image 1">
+                            <div class="modal-caption mb-4">Cinema4d, Redshift, Substance Painter.</div>
+                        </div>
+                        <p class="mt-3">A fan art project inspired by Machinarium, created using Cinema4D, Redshift, and Substance Painter. This work focuses on detailed 3D modeling and texturing to capture the game's unique aesthetic.</p>
+                        <a href="https://www.artstation.com/artwork/P06D1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on ArtStation</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalAuroraCombined" tabindex="-1" aria-labelledby="modalAuroraCombinedLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAuroraCombinedLabel">Aurora Menu & In Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="aurora-vertical-stack text-center">
+                            <!-- Aurora In Game video -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/UeOFgDJrB90" title="Aurora In Game"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="aurora-caption mb-4">Aurora In Game: Mobile water and billboard shaders with subtle effects.</div>
+                            <!-- Aurora Menu video -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/iAP0hbyaSK0" title="Aurora Menu"
+                                    allowfullscreen></iframe>
+                            </div>
+                            <div class="aurora-caption mb-4">Aurora Menu: Minimalistic shaders and effects for mobile game menu.</div>
+                            <!-- Aurora In Game preview image -->
+                            <img src="assets/img/portfolio-2.jpg" class="img-fluid mb-4 mx-auto"
+                                alt="Aurora In Game Image 1">
+                            <div class="aurora-caption mb-4">Aurora In Game Preview Image</div>
+                            <!-- Aurora Menu image -->
+                            <img src="assets/img/portfolio-1.jpg" class="img-fluid mb-4 mx-auto"
+                                alt="Aurora Menu Image 1">
+                            <div class="aurora-caption mb-4">Aurora Menu Preview Image</div>
+                        </div>
+                        <p class="mt-3">
+                            <strong>Aurora Project:</strong> I was responsible for the art side of the game, including creating the water shader, environment shaders, and all visual effects. The project features a minimal, lightweight menu and optimized in-game visuals, all designed in Unity to run smoothly on low-end mobile devices. <br><br>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal4Wheelers" tabindex="-1" aria-labelledby="modal4WheelersLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal4WheelersLabel">4Wheelers Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <div class="modal-caption mb-4"></div>
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/Uw-Oe9qD_g8" title="4Wheelers Gameplay Short 1" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">I was responsible for creating environment and car models. I also created water shaders.</div>
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/nzvh8-AhCPo" title="4Wheelers Gameplay Short 2" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Another environment for the game. It had 4 environment at the end.</div>
+                        </div>
+                        <p class="mt-3">An award-winning multiplayer game developed in Unity, featuring engaging gameplay and polished design. I contributed to model creation, shader development and visual effects.</p>
+                        <a href="https://www.imgawards.com/game-of-the-week/4wheelers-imga-mena-best-multiplayer-game-with-a-damn-good-design-too/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on IMGA</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalCouplesYoga" tabindex="-1" aria-labelledby="modalCouplesYogaLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCouplesYogaLabel">Couples Yoga Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/CouplesYoga.webp" class="img-fluid mb-4 mx-auto" alt="Couples Yoga Game Image 1">
+
+                        </div>
+                        <p class="mt-3">A Voodoo HyperCasual hit game developed in Unity, featuring intuitive mechanics and vibrant visuals. I worked on environments and visual polish.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.tippytap.yoga&hl=en&gl=US" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on Google Play</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalStarla" tabindex="-1" aria-labelledby="modalStarlaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalStarlaLabel">Starla Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/Starla.webp" class="img-fluid mb-4 mx-auto" alt="Starla Game Image 1">
+                        </div>
+                        <p class="mt-3">A space shooter game developed in Unity, featuring fast-paced gameplay and dynamic visual effects. I contributed to core mechanics and shader programming.</p>
+                        <a href="https://play.google.com/store/apps/details?id=games.FunTherapy.StarlaTheFinalFrontier" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on Google Play</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalBeautySalon" tabindex="-1" aria-labelledby="modalBeautySalonLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalBeautySalonLabel">Beauty Salon Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/BeatySalon V3.webp" class="img-fluid mb-4 mx-auto" alt="Beauty Salon Game Image 1">
+                            <div class="modal-caption mb-4">Main game screenshot.</div>
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/yLbhTmEwLs8" title="Beauty Salon Game" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Gameplay video.</div>
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, focusing on simple yet engaging mechanics and vibrant visuals for a broad audience.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalDrCare" tabindex="-1" aria-labelledby="modalDrCareLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDrCareLabel">Dr Care Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/Dr-Care.webp" class="img-fluid mb-4 mx-auto" alt="Dr Care Game Image 1">
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/slAyZdgGu9M" title="Dr Care Game" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Gameplay video.</div>
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, featuring intuitive medical-themed gameplay and clean visual design.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalIceSlide" tabindex="-1" aria-labelledby="modalIceSlideLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalIceSlideLabel">Ice Slide Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/IceSlide.webp" class="img-fluid mb-4 mx-auto" alt="Ice Slide Game Image 1">
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, featuring smooth sliding mechanics and icy-themed visuals for an engaging mobile experience.</p>
+                        <a href="https://apps.apple.com/us/app/ice-sling/id1549363450" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on App Store</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalIpear" tabindex="-1" aria-labelledby="modalIpearLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalIpearLabel">Make Your Mac Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/Ipear.webp" class="img-fluid mb-4 mx-auto" alt="Make Your Mac Game Image 1">
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/AHJmubpwkDk" title="Make Your Mac Game" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Gameplay video.</div>
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, allowing players to customize and create unique Mac-inspired designs with simple mechanics. I was responsible for creating the main gameplay mechanics.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalPowerWasher" tabindex="-1" aria-labelledby="modalPowerWasherLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPowerWasherLabel">Power Washer Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/PowerWasher.webp" class="img-fluid mb-4 mx-auto" alt="Power Washer Game Image 1">
+                            <div class="modal-caption mb-4">Main game screenshot.</div>
+                            <!-- Replace images with videos -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/RZeJjDeerrY" title="Power Washer Short 1" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Short gameplay video 1.</div>
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/zuLA9_1Xcsc" title="Power Washer Short 2" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Short gameplay video 2.</div>
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, featuring satisfying cleaning mechanics and vibrant visuals for a relaxing mobile experience.</p>
+                        <!-- <a href="https://youtube.com/shorts/zuLA9_1Xcsc?feature=share" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on YouTube</a> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalPottery" tabindex="-1" aria-labelledby="modalPotteryLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPotteryLabel">Pottery Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/Pottery.webp" class="img-fluid mb-4 mx-auto" alt="Pottery Game Image 1">
+
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/zlLZ_2mQtuY" title="Pottery Game" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Gameplay video.</div>
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, allowing players to craft pottery with intuitive controls and appealing visuals. I was the solo developer of this project, handling art and coding.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalJewelry" tabindex="-1" aria-labelledby="modalJewelryLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalJewelryLabel">Jewelry Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/Jewelry.webp" class="img-fluid mb-4 mx-auto" alt="Jewelry Game Image 1">
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/P7f7cbz-eLo" title="Jewelry Game" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Gameplay video.</div>
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, featuring jewelry crafting mechanics and visually appealing designs for a casual audience.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalRPSRun" tabindex="-1" aria-labelledby="modalRPSRunLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalRPSRunLabel">Rock Paper Scissors Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/RPS-Run.webp" class="img-fluid mb-4 mx-auto" alt="Rock Paper Scissors Game Image 1">
+
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/_qQFjCIhamA" title="Rock Paper Scissors Game" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Gameplay video.</div>
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, reimagining the classic Rock Paper Scissors with fast-paced runner mechanics and vibrant visuals.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalCandyMaster" tabindex="-1" aria-labelledby="modalCandyMasterLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCandyMasterLabel">Candy Master Game</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <img src="assets/img/CandyMaster.webp" class="img-fluid mb-4 mx-auto" alt="Candy Master Game Image 1">
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/tgStZYfEhZE" title="Candy Master Game" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Gameplay video.</div>
+                        </div>
+                        <p class="mt-3">A HyperCasual game developed in Unity, featuring candy-themed mechanics and colorful visuals for an engaging mobile experience.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Karagah Alavi Modal -->
+        <div class="modal fade" id="modalKaragahAlavi" tabindex="-1" aria-labelledby="modalKaragahAlaviLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalKaragahAlaviLabel">Karagah Alavi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <!-- <img src="assets/img/Karagah Alavi-Icon.jpg" class="d-block w-200 mb-4 mx-auto" alt="Karagah Alavi icon" style="max-width:700px;"> -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/kQhLWXlAngg" title="Karagah Alavi Gameplay" allowfullscreen></iframe>
+                            </div>
+                            <div class="modal-caption mb-4">Hidden Object Game with City Builder section.</div>
+                        </div>
+                        <p class="mt-3">
+                            I was the main developer for this project. Karagah Alavi is a hidden object game with an entertaining story and a city builder section.
+                        </p>
+                        <a href="https://cafebazaar.ir/app/com.joyixir.hiddenobjectgame" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on Cafebazaar</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cryptogram Farsi Modal -->
+        <div class="modal fade" id="modalCryptogramFarsi" tabindex="-1" aria-labelledby="modalCryptogramFarsiLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCryptogramFarsiLabel">Cryptogram Farsi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-horizontal-stack text-center">
+                            <img src="assets/img/Razhe.jpg" class="img-fluid mb-4 mx-auto" alt="Cryptogram Farsi icon" style="max-width:300px;width:100%;height:auto;">
+                            <img src="assets/img/Razhe02.jpg" class="img-fluid mb-4 mx-auto" alt="Cryptogram Farsi icon" style="max-width:300px;width:100%;height:auto;">
+                        </div>
+                        <div class="text-center">
+                        <div class="modal-caption mb-4">Farsi Cryptogram Puzzle Game.</div>
+                        </div>                        
+                        <p class="mt-3">
+                            I solo developed this project. Handling UI, Gameplay, Animations, etc. Cryptogram Farsi is a word puzzle game for Farsi speakers.
+                        </p>
+                        <a href="https://cafebazaar.ir/app/com.Razhia.Razhe" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on Cafebazaar</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content-section bg-tertiary text-white" id="contact">
+        <div class="container px-4 px-lg-5 text-center">
+            <h2 class="mb-4">Связаться со мной</h2>
+            <a class="btn btn-xl btn-light me-4" href="mailto:alesandro.denisov@gmail.com">Email</a>
+            <a class="btn btn-xl btn-dark" href="https://ishortn.ink/KXv9o4uGH">Telegram</a>
+        </div>
+    </section>
+    <section class="bg-dark" id="etc">
+        <footer class="footer text-center">
+            <div class="container px-4 px-lg-5">
+                <ul class="list-inline mb-5">
+                    <!--
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/_erfan_sh">
+                            <i class="icon-social-twitter"></i>
+                        </a>
+                    </li>-->
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white mr-3" href="https://ishortn.ink/eNrZHcB5s">
+                            <i class="icon-social-github"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white" href="https://ishortn.ink/GLyZh6azE">
+                            <i class="icon-social-linkedin"></i>
+                        </a>
+                    </li>
+                    <!--
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white" href="https://www.artstation.com/nepstersh">
+                            <img class="img-fluid" src="assets/img/ArtStation.png" alt="ArtStation profile" />
+                        </a>
+                    </li>-->
+                </ul>
+                <p class="text-muted small mb-0">Copyright © Alex Denisov 2025</p>
+            </div>
+        </footer>
+        <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </section>
+    <script>
+    // Fade tags on hover for each project-item
+    document.querySelectorAll('.project-item').forEach(function(item) {
+        var tags = item.querySelector('.project-tags');
+        if (!tags) return;
+        item.addEventListener('mouseenter', function() {
+            tags.classList.remove('fade-in');
+            tags.classList.add('fade-out');
+        });
+        item.addEventListener('mouseleave', function() {
+            tags.classList.remove('fade-out');
+            tags.classList.add('fade-in');
+        });
+    });
+</script>
+</body>
+
+</html>
