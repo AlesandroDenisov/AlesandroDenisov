@@ -224,7 +224,26 @@
                 <!--<button class="btn btn-outline-light mx-1" onclick="filterProjects('techArt')">Technical Art</button>
                 <button class="btn btn-outline-light mx-1" onclick="filterProjects('recent')">Recent Projects</button>-->
             </div>
-            <div class="row gx-0">                
+            <div class="row gx-0">
+                <!-- Pixel Puzzle Flow: Color Memes Conveyor Item -->
+                <div id="PixelPuzzleFlow" class="col-lg-3 project-item gameDev techArt recent">
+                    <div class="project-tags fade-in">
+                        <span class="project-tag-icon" title="Coding">
+                            <img src="assets/img/code.png" alt="Coding" />
+                        </span>
+                    </div>
+                    <a class="portfolio-item" href="#" data-bs-toggle="modal" data-bs-target="#modalPixelPuzzleFlow">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <div class="h2" data-i18n="projects.PixelPuzzleFlow.title">Color Block Shredder</div>
+                                <p class="mb-0" data-i18n="projects.PixelPuzzleFlow.description">Клон игры Color Block Jam.</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/images/pixel-puzzle-flow/icon-rounded.png"
+                             alt="3D головоломка в стиле Pixel Flow" />
+                    </a>
+                </div>
+                
                 <!-- NDA 4X Strategy Item -->
                 <div id="NdaStrategy4XLabel" class="col-lg-3 project-item gameDev recent">
                     <div class="project-tags fade-in">
@@ -364,6 +383,76 @@
                 <p style="margin-bottom:.5cm;"></p>
                 <a id="ShowMoreButton" class="btn btn-primary btn-xl" href="javascript:void(0);"
                     onclick="showAllInCategory()" data-i18n="portfolio.loadMore">Load More</a>
+            </div>
+        </div>
+
+        <!-- Pixel Puzzle Flow Modal Item-->
+        <div class="modal fade" id="modalPixelPuzzleFlow" tabindex="-1" aria-labelledby="modalPixelPuzzleFlowLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content bg-tertiary text-white">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPixelPuzzleFlowLabel"  data-i18n="projects.PixelPuzzleFlow.title">Pixel Puzzle Flow</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-vertical-stack text-center">
+                            <!-- Color Block Shredder gameplay video -->
+                            <div class="ratio ratio-16x9 mb-4" style="margin-left:auto; margin-right:auto; max-width:700px;">
+                                <iframe src="https://www.youtube.com/embed/k38qsfpGIzI"
+                                        title="PixelPuzzleFlow gameplay"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            <!--<div class="modal-caption mb-4">Видео с геймплеем</div>-->
+                        </div>
+                        <!--
+                        <div class="text-center">
+                            <div class="modal-caption mb-4">О  Color Block Shredder</div>
+                        </div>-->
+                        <!-- Description -->
+                        <p class="mt-3" data-i18n="projects.PixelPuzzleFlow.modalDescription">Работал в качестве Unity-разработчика и геймдизайнера над данной игрой в одиночку.</p>
+
+                        <p/>
+                        <p data-i18n="projects.PixelPuzzleFlow.modalDetails">Игра в жанре 3d головоломки, содержит 30+ уровней, систему сохранений, магазин покупок (IAP), локализацию на русский и английский языки.</p>
+
+                        <p/><p  data-i18n="projects.PixelPuzzleFlow.modalFeatures">🔹 Реализована кор-механика перемещения стрелков из очередей на конвеер, система бустеров (4 вида), система соединенных стрелков<br>
+                        🔹 Продумана расширяемая архитектура, используется Zenject, Signals, UniTask и др.<br>
+                        🔹 Создан отзывчивый адаптивный UI (портретный и альбомный режимы) на uGUI с тач управлением<br>
+                        🔹 Интегрированы API: реклама (interstitital и rewarded), IAP, сохранения, аналитика, таблица лидеров<br>
+                        🔹 Создана система обучения для плавного онбординга игроков<br>
+                        🔹 Добавлена звуковая система с проигрыванием музыки и SFX<br>
+                        🔹 Оптимизирован размер билда и производительность для плавного геймплея на разных устройствах<br>
+                        🔹 Сделаны удобные конфигурационные файлы для управления настройками визуала, игровыми параметрами, уровнями и обучением<br>
+                        🔹 Реализована система отладки Debug с отдельным окном и различными возможностям для ускорения тестирования функционала игры<br>
+                        🔹 Разработан редактор уровней, который по любой картинке создаёт пиксель-арт изображение с заданными размерами сетки и автоматически распределяет стрелков по очередям, что позволило сократить создание уровня вручную от часа до нескольких минут в автоматизированном режиме</p>
+                        <!-- PLAY-->
+                        <a href="https://yandex.ru/games/app/501409?draft=true&lang=ru" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="projects.PixelPuzzleFlow.playButton">Play on games.yandex.ru</a>
+
+
+                    <p/>
+                    <div class="modal-horizontal-stack text-center">
+                        <img src="assets/images/pixel-puzzle-flow/1.webp" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:300px;width:100%;height:auto;">
+                        <img src="assets/images/pixel-puzzle-flow/2.webp" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:300px;width:100%;height:auto;">
+                    </div>
+                    <div class="modal-horizontal-stack text-center">
+                        <img src="assets/images/pixel-puzzle-flow/3.webp" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:300px;width:100%;height:auto;">
+                        <img src="assets/images/pixel-puzzle-flow/4.webp" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:300px;width:100%;height:auto;">
+                    </div>
+                    <div class="modal-horizontal-stack text-center">
+                        <img src="assets/images/pixel-puzzle-flow/5.webp" class="img-fluid mb-4 mx-auto" alt="level progress" style="max-width:300px;width:100%;height:auto;">
+                        <img src="assets/images/pixel-puzzle-flow/6.webp" class="img-fluid mb-4 mx-auto" alt="level gameplay" style="max-width:300px;width:100%;height:auto;">
+                    </div>
+                    <div class="modal-horizontal-stack text-center">
+                        <img src="assets/images/pixel-puzzle-flow/7.webp" class="img-fluid mb-4 mx-auto" alt="shop" style="max-width:300px;width:100%;height:auto;">
+                        <img src="assets/images/pixel-puzzle-flow/8.webp" class="img-fluid mb-4 mx-auto" alt="level gamelay victory" style="max-width:300px;width:100%;height:auto;">
+                    </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" data-i18n="modal.close">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
                 

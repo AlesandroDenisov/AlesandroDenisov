@@ -13,6 +13,14 @@
     "loadMore": "Load More"
   },
   "projects": {
+    "PixelPuzzleFlow": {
+      "title": "Pixel Puzzle Flow",
+      "description": "A 3D puzzle game inspired by Pixel Flow, a fully complete game with 30+ levels for WebGL.",
+      "modalDescription": "Worked as a Unity Developer and Game Designer, developing this game solo.",
+      "modalDetails": "A 3D puzzle game featuring 30+ levels, a save system, an in-app purchase shop, and localization in English and Russian.",
+      "modalFeatures": "🔹 Implemented the core mechanic of moving shooters from queues onto a conveyor, along with a booster system (4 types) and linked shooter mechanics<br>🔹 Designed a scalable architecture using Zenject, Signals, UniTask, and more<br>🔹 Built a responsive, adaptive UI (portrait and landscape modes) using uGUI with touch controls<br>🔹 Integrated platform APIs: ads (interstitial and rewarded), IAP, cloud saves, analytics, and leaderboards<br>🔹 Developed a tutorial system for smooth player onboarding<br>🔹 Implemented an audio system with music and SFX<br>🔹 Optimized build size and performance for smooth gameplay across devices<br>🔹 Created flexible configuration systems for visuals, gameplay parameters, levels, and tutorials<br>🔹 Implemented a debug system with a dedicated window and tools to speed up testing<br>🔹 Developed a level editor that generates pixel-art levels from images, automatically configures the grid and assigns shooters to queues — reducing level creation time from hours to minutes",
+      "playButton": "Play on games.yandex.ru"
+    },
     "nda4xStrategy": {
       "title": "NDA 4X STRATEGY",
       "description": "Multiplayer mobile 4X strategy game with base building, resource management, hero progression, and tactical battles.",
@@ -23,14 +31,14 @@
     },
     "colorBlockShredder": {
       "title": "Color Block Shredder",
-      "description": "Clone of Color Block Jam game.",
+      "description": "A puzzle game inspired by Color Block Jam.",
       "modalDescription": "Worked as a Unity developer on this game in a small team.",
       "modalDetails": "A 3D puzzle game containing 31 levels, a save system, in-app purchases (IAP), localization in Russian, English, French, German, Italian, and Japanese.",
       "modalFeatures": "🔹 Implemented core mechanics and designed a scalable architecture<br>🔹 Created responsive UI with uGUI and touch controls<br>🔹 Integrated APIs: ads, IAP, saves, analytics, leaderboard<br>🔹 Added audio system with music and SFX playback<br>🔹 Optimized performance for smooth gameplay on various devices"
     },
     "floatingIslands": {
       "title": "FLOATING ISLANDS: PUZZLE PLATFORMER",
-      "description": "2D puzzle platformer, a fully complete game with 35 levels for WebGL on Yandex Games.",
+      "description": "2D puzzle platformer, a fully complete game with 35 levels for WebGL.",
       "modalDescription": "Solo developed a 2D puzzle platformer in Unity and C#, optimized for WebGL for play on PC, smartphones, and tablets.",
       "modalDetails": "The game includes 35 levels, tutorials, a save system for Yandex Games, a leaderboard, and support for multiple languages (Russian, English, Turkish).",
       "modalFeatures": "🔹 Reduced WebGL build size to 15 MB while maintaining functionality for faster loading and better performance<br>🔹 Created responsive UI with adaptive input system (keyboard for Desktop, on-screen touch controls for mobile and tablets)<br>🔹 Integrated Yandex Games API: ads, cloud saves, analytics, leaderboard<br>🔹 Created audio system with background music and sound effects, fully selected and configured sound in the game<br>🔹 Implemented full localization for Russian, English, Turkish using Unity Localization<br>🔹 Performed optimization for smooth operation and stable FPS on a wide range of devices",
@@ -77,7 +85,7 @@
     "telegram": "Telegram"
   },
   "footer": {
-    "copyright": "Copyright © Alex Denisov 2025"
+    "copyright": "Copyright © Alex Denisov 2026"
   },
   "modal": {
     "close": "Close"
