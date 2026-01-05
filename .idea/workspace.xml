@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a9b70e7-635e-4f73-be7e-ee5b75ac9fd3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/js/i18n.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/en.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/ru.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -29,6 +32,17 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Documents/Unity/INBOX/DeadAhead/YanDox_DeadAhead/Assets/Samples/ProBuilder/5.0.7/Editor Examples/CustomAction.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Documents/Unity/INBOX/DeadAhead/YanDox_DeadAhead/Assets/Samples/ProBuilder/5.0.7/Runtime Examples/Icosphere FFT/Scripts/IcoBumpin.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/OneKingIsEnough/AssetRipper_export_20251225_182553/ExportedProject/Assets/Scripts/Assembly-CSharp/Assets/Scripts/Presentation/Ingame/MapManagement/MapPresenter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/OneKingIsEnough/AssetRipper_export_20251225_182553/ExportedProject/Assets/Scripts/NewMonoBehaviourScript.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/Restory/AssetRipper_export_20251225_174328/ExportedProject/Assets/Scripts/Restory.Assembly/Restory/Data/Licenses/LicenseInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/Restory/AssetRipper_export_20251225_174328/ExportedProject/Assets/Scripts/Restory.Assembly/Restory/Gameplay/Cheats/DisassembleCheats.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/Restory/AssetRipper_export_20251225_174328/ExportedProject/Assets/Scripts/Restory.Assembly/Restory/Gameplay/Cheats/LicensesCheats.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/Restory/AssetRipper_export_20251225_174328/ExportedProject/Assets/Scripts/Restory.Assembly/Restory/Gameplay/Cheats/TimeCheats.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/Restory/AssetRipper_export_20251225_174328/ExportedProject/Assets/Scripts/Restory.Assembly/Restory/Infrastructure/Game.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/Wanderburg Playtest/AssetRipper_export_20251224_191103/ExportedProject/Assets/Scripts/Assembly-CSharp/DDOL.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_DECOMPILE/GAMES/Wanderburg Playtest/AssetRipper_export_20251224_191103/ExportedProject/Assets/Scripts/Assembly-CSharp/OverworldVehicle.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../ПРОЕКТЫ/GameDev/_PROJECTS/Clon Monument Valley/source/MonumentValley/Assets/_Project/Scripts/Condition.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -66,7 +80,8 @@
       <workItem from="1763540467133" duration="2484000" />
       <workItem from="1763560856276" duration="11562000" />
       <workItem from="1764778419066" duration="9431000" />
-      <workItem from="1765098446250" duration="30438000" />
+      <workItem from="1765098446250" duration="34610000" />
+      <workItem from="1766594455016" duration="28809000" />
     </task>
     <servers />
   </component>

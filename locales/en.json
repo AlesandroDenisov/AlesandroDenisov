@@ -1,0 +1,85 @@
+{
+  "header": {
+    "name": "Alexander Denisov",
+    "title": "Professional Unity and C# Game Developer",
+    "downloadCV": "Download CV",
+    "downloadCVLink": "https://ishortn.ink/Z2EgEPEVs"
+  },
+  "portfolio": {
+    "filters": {
+      "all": "All",
+      "gameDev": "Game Development"
+    },
+    "loadMore": "Load More"
+  },
+  "projects": {
+    "nda4xStrategy": {
+      "title": "NDA 4X STRATEGY",
+      "description": "Multiplayer mobile 4X strategy game with base building, resource management, hero progression, and tactical battles.",
+      "modalDescription": "Working as a Unity client-side developer on a multiplayer mobile 4X strategy game with base building, resource management, hero progression, and tactical battles.",
+      "modalNDA": "Due to NDA, I cannot disclose details.",
+      "modalTech": "Applied the following approaches and technologies:<br>🔹 Clean Architecture as the architectural approach<br>🔹 VContainer as the Dependency Injection framework<br>🔹 MessagePipe as a message bus for decoupled communication<br>🔹 UniTask for async/await usage<br>🔹 R3 for reactive programming<br>🔹 PlayFab for backend services, configs, and analytics<br>🔹 DOTS (ECS)<br>🔹 UI Toolkit for UI<br>🔹 FMOD as the audio system<br>🔹 NSubstitute and NUnit for creating unit tests",
+      "modalTasks": "Examples of tasks I completed:<br>🔹 Developed character dialogue system<br>🔹 Worked on player equipment system - production, upgrading, disassembly of game items and materials for their creation<br>🔹 Created a bulk content import tool that saves dozens of hours of tech artist work (with two clicks, 2D textures, icons, 3D models are added to the project with auto-preset application, atlas creation, auto-prefab generation for game entities, auto-adding them to scenes and Addressables).<br>🔹 Created a data export tool from Google Sheets, which accelerated balance verification by 2x and saves hours on configuration file creation (balance data is exported from Google Sheets created and expanded by game designers, and Scriptable Objects used in code are automatically created).<br>🔹 Created a tool for optimizing shadow application in the game<br>🔹 Created GUI interfaces using Unity UI Toolkit based on layouts created by the art department in Figma<br>🔹 Created unit tests with code coverage >70% to reduce critical bugs in production to zero"
+    },
+    "colorBlockShredder": {
+      "title": "Color Block Shredder",
+      "description": "Clone of Color Block Jam game.",
+      "modalDescription": "Worked as a Unity developer on this game in a small team.",
+      "modalDetails": "A 3D puzzle game containing 31 levels, a save system, in-app purchases (IAP), localization in Russian, English, French, German, Italian, and Japanese.",
+      "modalFeatures": "🔹 Implemented core mechanics and designed a scalable architecture<br>🔹 Created responsive UI with uGUI and touch controls<br>🔹 Integrated APIs: ads, IAP, saves, analytics, leaderboard<br>🔹 Added audio system with music and SFX playback<br>🔹 Optimized performance for smooth gameplay on various devices"
+    },
+    "floatingIslands": {
+      "title": "FLOATING ISLANDS: PUZZLE PLATFORMER",
+      "description": "2D puzzle platformer, a fully complete game with 35 levels for WebGL on Yandex Games.",
+      "modalDescription": "Solo developed a 2D puzzle platformer in Unity and C#, optimized for WebGL for play on PC, smartphones, and tablets.",
+      "modalDetails": "The game includes 35 levels, tutorials, a save system for Yandex Games, a leaderboard, and support for multiple languages (Russian, English, Turkish).",
+      "modalFeatures": "🔹 Reduced WebGL build size to 15 MB while maintaining functionality for faster loading and better performance<br>🔹 Created responsive UI with adaptive input system (keyboard for Desktop, on-screen touch controls for mobile and tablets)<br>🔹 Integrated Yandex Games API: ads, cloud saves, analytics, leaderboard<br>🔹 Created audio system with background music and sound effects, fully selected and configured sound in the game<br>🔹 Implemented full localization for Russian, English, Turkish using Unity Localization<br>🔹 Performed optimization for smooth operation and stable FPS on a wide range of devices",
+      "playButton": "Play on games.yandex.ru"
+    },
+    "wastelandIdle": {
+      "title": "Wasteland Idle Arcade",
+      "description": "Idle arcade game with vehicles in the spirit of Mad Max.",
+      "modalDescription": "Participated as the lead Unity and C# developer in a project to create a mobile game in the Idle Arcade genre.",
+      "modalDetails": "The game includes player movement systems, progression, resource management, enemy system, and game loop, all designed with scalability in mind.",
+      "modalArchitecture": "<strong>Developed project architecture, StateMachine for game lifecycle management:</strong><br>GameRunner -> BootstrapState -> LoadProgressState -> LoadLevelState -> GameLoopState",
+      "modalSystems": "<strong>Implemented systems:</strong><br>🔹 Resource gathering system (Loot System) with event model: LootSpawner, BuildingProduce<br>🔹 Player progress system with centralized data storage (PersistentProgressService)<br>🔹 Enemy system with various behaviors (patrolling, player detection and pursuit, attack, losing player and stopping pursuit, loot dropping)<br>🔹 Audio system with background music and sound effects",
+      "modalPatterns": "<strong>Applied patterns:</strong><br>🔹 State Machine — game state management (GameStateMachine)<br>🔹 Abstract Factory — creating game objects (GameFactory, UIFactory)<br>🔹 Service Locator — accessing services (AllServices)",
+      "modalFeatures": "<strong>Features:</strong><br>🔹 Modular architecture for easy scaling<br>🔹 Clean and maintainable code with modern programming patterns",
+      "playButton": "Play Demo on itch.io"
+    },
+    "cityYtic": {
+      "title": "City Ytic",
+      "description": "Demo game inspired by M.C. Escher's work and Monument Valley.",
+      "modalDescription": "Demo game inspired by M.C. Escher's work and Monument Valley game",
+      "modalDetails": "In this project, I recreated some mechanics from the original Monument Valley game:<br>🔹 Illusion of character movement that is impossible in three-dimensional Euclidean space.<br>🔹 Defined movement rule system for each level.<br>🔹 Platform movement with pressed mouse cursor.<br>🔹 Rotations and movements of level elements when specified conditions are met or when the character presses buttons.<br>🔹 Calculation of available and unavailable character routes when the level landscape changes.",
+      "modalTech": "Technologies applied in the project:<br>🔹 Zenject as DI Container<br>🔹 UniTask for async/await usage<br>🔹 UI Toolkit for UI<br>🔹 DOTween for animations<br>🔹 NSubstitute and NUnit for creating unit tests",
+      "playButton": "Play Demo on itch.io"
+    },
+    "hackathon4": {
+      "title": "How to Steal Christmas",
+      "description": "1st place at the Hackathon 4.0 game jam.",
+      "modalDescription": "My team of 4 people, where I was the captain, created this game in 72 hours at the Hackathon 4.0 game jam.",
+      "modalDetails": "The jam themes were: Christmas/New Year and inventory system.<br>The game includes 2 levels, an inventory system, patrolling enemies with vision areas, and an audio system.",
+      "modalTasks": "🔹 Assembled the team; conducted meetings on product concept selection, development progress; distributed responsibilities.<br>🔹 Added inventory system to the game, configured items.<br>🔹 Added audio for background music and effects.<br>🔹 Created the main character model using an AI-generative tool.<br>🔹 Configured level balance, polished the final version of the game.<br>🔹 Presented the game in the finals.",
+      "playButton": "Play on itch.io"
+    },
+    "braveDiver": {
+      "title": "SCUBA DIVING: BRAVE DIVER",
+      "description": "Clone of Dave the Diver game.",
+      "modalDescription": "This project was created in a team as part of a game dev workshop in 2023. I participated as a programmer and also worked on level design and balance. Metrics during test traffic acquisition were below expectations, and it was decided not to continue developing the project.",
+      "modalTasks": "My completed tasks:<br>🔹 Designed the level using the original game as a reference.<br>🔹 Created the level in Unity editor using ready-made assets.<br>🔹 Implemented attack system on ECS<br>🔹 Created fish movement system<br>🔹 Calculated resource balance in Google Sheets",
+      "downloadButton": "Download APK"
+    }
+  },
+  "contact": {
+    "title": "Contact Me",
+    "email": "Email",
+    "telegram": "Telegram"
+  },
+  "footer": {
+    "copyright": "Copyright © Alex Denisov 2025"
+  },
+  "modal": {
+    "close": "Close"
+  }
+}
